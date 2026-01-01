@@ -11,7 +11,7 @@ public class ste {
     private static JFrame oyunPenceresi;
     private static JButton[][] alanButonlari = new JButton[3][3];
     private static JLabel siraLabel;
-    private static JLabel analizLabel; // Новая надпись для шансов
+    private static JLabel analizLabel; 
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(ste::oyunPenceresiOlustur);
@@ -51,7 +51,7 @@ public class ste {
         oyunPenceresi.setVisible(true);
     }
 
-    // --- ЛОГИКА АНАЛИЗА ---
+   
 
     private static void обновитьАналитику() {
         if (kazananKontrol() || alanDoluMu()) {
@@ -63,14 +63,14 @@ public class ste {
         int bestVal = -1000;
         String recommendation = "";
 
-        // Просчитываем каждый возможный ход для текущего игрока
+        // Mevcut oyuncu için her olası hamleyi hesapla
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (oyunAlani[i][j] == ' ') {
                     oyunAlani[i][j] = aktifplayer;
                     int moveVal = minimax(oyunAlani, 0, false);
 
-                    // Статистика для шансов (упрощенно)
+                    // Olasılık İstatistikleri
                     if (moveVal > 0) winX++;
                     else if (moveVal < 0) winO++;
                     else draws++;
@@ -119,7 +119,7 @@ public class ste {
         }
     }
 
-    // Вспомогательные методы для анализа (без статики основного поля)
+    // Analiz için yardımcı metotlar
     private static boolean checkWin(char[][] b, char p) {
         for (int i = 0; i < 3; i++) {
             if (b[i][0] == p && b[i][1] == p && b[i][2] == p) return true;
@@ -133,7 +133,7 @@ public class ste {
         return true;
     }
 
-    // --- СТАНДАРТНЫЕ МЕТОДЫ ИГРЫ ---
+    // STANDART OYUN METOTLARI
 
     private static boolean kazananKontrol() {
         return checkWin(oyunAlani, aktifplayer);
@@ -158,17 +158,17 @@ public class ste {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (oyunAlani[r][c] == ' ') {
-                // 1. Твой ход (Крестик)
+                // 1.  Oyuncu Hamlesi (X)
                 сделатьЛогикуХода(r, c);
 
-                // 2. Если игра не закончилась и сейчас очередь Бота (O)
+                // 2. Oyun devam ediyorsa ve hamle sırası Bot'ta ise
                 if (aktifplayer == 'O') {
                     ходБота();
                 }
             }
         }
 
-        // Вынес логику в отдельный метод, чтобы и ты, и бот могли её использовать
+        
         private void сделатьЛогикуХода(int row, int col) {
             oyunAlani[row][col] = aktifplayer;
             alanButonlari[row][col].setText(String.valueOf(aktifplayer));
@@ -188,7 +188,7 @@ public class ste {
             }
         }
 
-        private void ходБота() { // Убрал static, чтобы бот видел кнопки
+        private void ходБота() { 
             int bestScore = -1000;
             int moveRow = -1;
             int moveCol = -1;
@@ -209,7 +209,7 @@ public class ste {
             }
 
             if (moveRow != -1) {
-                сделатьЛогикуХода(moveRow, moveCol); // Бот реально делает ход
+                сделатьЛогикуХода(moveRow, moveCol); 
             }
         }
     }
