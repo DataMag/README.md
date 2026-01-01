@@ -5,12 +5,12 @@ import java.util.Random;
 import javax.swing.*;
 
 public class FlappyBird extends JPanel implements ActionListener, KeyListener {
-    // Константы для легкой настройки игры
+    
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     private static final int GROUND_HEIGHT = 120;
     private static final int PIPE_WIDTH = 100;
-    private static final int PIPE_GAP = 250; // Расстояние между верхней и нижней трубой
+    private static final int PIPE_GAP = 250; // Üst ve alt boru arasındaki mesafe
     private static final int TICK_SPEED = 20;
 
     private JFrame frame;
@@ -33,11 +33,11 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         bird = new Rectangle(WIDTH / 2 - 10, HEIGHT / 2 - 10, 20, 20);
         pipes = new ArrayList<>();
 
-        // Начальные трубы
+        
         addPipe(true);
         addPipe(true);
 
-        frame.add(this); // Добавляем саму панель в фрейм
+        frame.add(this); // Paneli çerçeveye (frame) ekle
         frame.setSize(WIDTH, HEIGHT);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
@@ -51,9 +51,9 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         int height = 50 + random.nextInt(300);
         int xPos = isInitial ? WIDTH + PIPE_WIDTH + pipes.size() * 300 : pipes.get(pipes.size() - 1).x + 600;
 
-        // Нижняя труба
+        // Alt boru çizimi
         pipes.add(new Rectangle(xPos, HEIGHT - height - GROUND_HEIGHT, PIPE_WIDTH, height));
-        // Верхняя труба
+        // Üst boru çizimi
         pipes.add(new Rectangle(xPos, 0, PIPE_WIDTH, HEIGHT - height - PIPE_GAP));
     }
 
@@ -61,31 +61,31 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // Включаем сглаживание для красоты
+        
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // Небо
+        // Gökyüzü çizimi
         g.setColor(Color.CYAN);
         g.fillRect(0, 0, WIDTH, HEIGHT);
 
-        // Земля
+        // Zemin çizimi
         g.setColor(Color.ORANGE);
         g.fillRect(0, HEIGHT - GROUND_HEIGHT, WIDTH, GROUND_HEIGHT);
         g.setColor(Color.GREEN);
         g.fillRect(0, HEIGHT - GROUND_HEIGHT, WIDTH, 20);
 
-        // Птица
+        // Kuşun çizimi
         g.setColor(Color.RED);
         g.fillRect(bird.x, bird.y, bird.width, bird.height);
 
-        // Трубы
+        // Boruların çizimi ve hareketi
         g.setColor(Color.GREEN.darker());
         for (Rectangle pipe : pipes) {
             g.fillRect(pipe.x, pipe.y, pipe.width, pipe.height);
         }
 
-        // Текст
+        
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 50));
 
@@ -115,7 +115,7 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         if (!started) {
             started = true;
         } else {
-            yMotion = (yMotion > 0) ? 0 : yMotion; // Сброс падения перед рывком вверх
+            yMotion = (yMotion > 0) ? 0 : yMotion; // Yukarı sıçramadan önce düşüşü sıfırla
             yMotion -= 10;
         }
     }
@@ -140,23 +140,23 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
                 pipes.get(i).x -= speed;
             }
 
-            // Гравитация
+            // Yerçekimi etkisi
             yMotion += 1;
             bird.y += yMotion;
 
-            // Удаление старых труб и добавление новых
+            // Eski boruları temizle ve yenilerini ekle
             for (int i = 0; i < pipes.size(); i++) {
                 Rectangle p = pipes.get(i);
 
                 if (p.x + p.width < 0) {
                     pipes.remove(p);
-                    if (p.y == 0) addPipe(false); // Добавляем новую пару, если удалили верхнюю
+                    if (p.y == 0) addPipe(false); 
                 }
             }
 
-            // Проверка столкновений и счета
+            // Çarpışma ve puan kontrolü
             for (Rectangle p : pipes) {
-                // Начисление очков (когда птица пересекает середину трубы)
+                // Kuş boru ortasını geçtiğinde puan ekle
                 if (p.y == 0 && bird.x + bird.width / 2 == p.x + p.width / 2) {
                     score++;
                 }
@@ -166,7 +166,7 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
                 }
             }
 
-            // Столкновение с границами
+            // Sınır çarpışma kontrolü
             if (bird.y > HEIGHT - GROUND_HEIGHT || bird.y < 0) {
                 gameOver = true;
             }
