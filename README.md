@@ -1,19 +1,24 @@
 # README.md
-My Java OOP Games: Tic-Tac-Toe (AI), Flappy Bird, and Hangman.
-# 3-in-1 Java Game Collection (DataMag Project)
 
-🎮 Oyunlar (Games)
-Tic-Tac-Toe (ste.java): Minimax algoritması kullandım, bilgisayara karşı oynanan bir X-O-X oyunu. Yenmek biraz zor olabilir.
+# 3-in-1 Java Game Collection (Nesne Tabanlı Programlama Project)
 
-Flappy Bird (FlappyBird.java): Klasik bildiğimiz Flappy Bird oyunu. Java Swing ile tekrar yazdım.
+## 🎮 Oyunlar (Games)
+1. Tic-Tac-Toe (ste.java): Minimax algoritması kullandım, bilgisayara karşı oynanan bir X-O-X oyunu. Yenmek biraz zor olabilir.
 
-Adam Asmaca (AdamAsmacaGUI.java): Grafik arayüzü olan bir kelime tahmin oyunu (Hangman).
+2. Flappy Bird (FlappyBird.java): Klasik bildiğimiz Flappy Bird oyunu. Java Swing ile tekrar yazdım.
 
-🚀 Nasıl Çalıştırılır? (How to Run)
+3. Adam Asmaca (AdamAsmacaGUI.java): Grafik arayüzü olan bir kelime tahmin oyunu (Hangman).
+
+## 🚀  Nasıl Çalıştırılır? (How to Run)
 GameLauncher.java dosyasını çalıştırın, oradan istediğiniz oyunu seçebilirsiniz. Her oyun ayrı pencerede açılır.
 
-🛠️ Teknolojiler
+## 🛠️ Teknolojiler
 Java JDK 17
-
 Swing & AWT
+
+
+## 📹 PROJE VIDEO 
+https://github.com/user-attachments/assets/c017d820-3c5e-42cd-b298-a1cba6adefda
+
+
 
