@@ -1,4 +1,4 @@
-# README.md
+# MyProject.md
 
 # 3-in-1 Java Game Collection (Nesne Tabanlı Programlama Project)
 
